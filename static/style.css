@@ -1,0 +1,315 @@
+/* Gaya umum */
+* {
+    font-family: 'Roboto', sans-serif; /* Mengatur font default untuk semua elemen */
+    transition: all 0.3s ease-in-out;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 75px;
+    background-color: #ffffff;
+}
+
+/* Header */
+header {
+    background: linear-gradient(to bottom, #0061a8, #0082e6);
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 75px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+header.transparent {
+    background: linear-gradient(to bottom, rgba(0, 97, 168, 0.5), rgba(0, 130, 230, 0.5)); /* Transparansi pada gradasi biru */
+}
+
+header h1 {
+    margin: 0;
+    padding-left: 20px;
+    color: white;
+    font-size: 24px;
+}
+
+/* Icon Menu */
+#menu-icon, #close-icon {
+    display: block;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    padding-right: 20px;
+}
+
+#close-icon {
+    display: none;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px;
+    padding-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+nav ul li a:hover {
+    color: #FFD700;
+}
+
+/* Media Query */
+@media (max-width: 768px) {
+    header {
+        background: linear-gradient(to bottom, #0061a8, #0082e6);
+    }
+
+    #navbar ul {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to bottom, #0082e6, #008ca8);
+        box-shadow: 0 2px 5px rgba(26, 25, 25, 0.5);
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    #navbar.active ul {
+        display: flex;
+    }
+
+    #menu-icon {
+        display: block;
+    }
+
+    #close-icon {
+        display: none;
+    }
+
+    #navbar.active + #close-icon {
+        display: block;
+    }
+
+    #navbar.active + #menu-icon {
+        display: none;
+    }
+
+    nav ul li {
+        margin-bottom: 10px;
+    }
+}
+
+/* Gaya Konten Utama */
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+.content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.landscape-img {
+    width: 100%;
+    height: auto;
+    max-height: 325px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.center {
+    text-align: center;
+    font-weight: bold;
+}
+
+.center-title {
+    font-size: 30px;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(to bottom, #0061a8, #0082e6);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    height: 45px;
+    font-size: 15px;
+    margin-top: auto;
+    position: static;
+}
+
+
+.logo-link {
+    text-decoration: none;
+    color: white;
+}
+
+/* Tabel */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+.table th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Form */
+form {
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 10px;
+}
+
+form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+form button {
+    grid-column: 1 / -1;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Tombol Umum */
+button {
+    font-size: 16px;
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: none;
+}
+
+/* Tambahkan animasi pada hover */
+button:hover {
+    background-color: #0056b3; /* Warna latar belakang saat di-hover */
+    color: #ffffff; /* Warna teks saat di-hover */
+    box-shadow: 0px 0px 10px 2px rgba(0, 123, 255, 0.5); /* Efek cahaya */
+    transition: all 0.3s ease; /* Animasi transisi */
+}
+
+/* Tambahkan animasi pada hover untuk tombol dengan warna latar belakang berbeda */
+button[style*="background-color:rgb(85, 84, 80)"]:hover {
+    background-color: rgb(68, 67, 64); /* Warna latar belakang saat di-hover */
+    box-shadow: 0px 0px 10px 2px rgba(85, 84, 80, 0.5); /* Efek cahaya */
+}
+
+button[style*="background-color: #dc3545"]:hover {
+    background-color: #bb2d3b; /* Warna latar belakang saat di-hover */
+    box-shadow: 0px 0px 10px 2px rgba(220, 53, 69, 0.5); /* Efek cahaya */
+}
+
+button[style*="background-color: #ffc107"]:hover {
+    background-color: #e0a800; /* Warna latar belakang saat di-hover */
+    box-shadow: 0px 0px 10px 2px rgba(255, 193, 7, 0.5); /* Efek cahaya */
+}
+
+button[style*="background-color: #007bff"]:hover {
+    background-color: #0056b3; /* Warna latar belakang saat di-hover */
+    box-shadow: 0px 0px 10px 2px rgba(0, 123, 255, 0.5); /* Efek cahaya */
+}
+
+/* Menambah tebal garis pada kotak input */
+input[type="number"] {
+    border: 2px solid #ccc; /* Warna border abu-abu */
+    padding: 10px; /* Padding di dalam kotak input */
+    border-radius: 5px; /* Rounding pada sudut kotak input */
+}
+
+/* Menghapus efek shadow saat input dalam fokus */
+input[type="number"]:focus {
+    outline: none; /* Menghapus outline default */
+    border: 2px solid #aaa; /* Border sedikit lebih gelap saat dalam fokus */
+}
+/* Gaya Halaman About */
+#about-content .profile-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 0;
+}
+
+#about-content .about-img {
+    flex: 1;
+    width: 30%;
+    max-width: 30%;
+    height: auto;
+    object-fit: cover;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0;
+}
+
+#about-content .profile-info {
+    flex: 2;
+    margin-left: 10px;
+    padding: 10px 20px;
+}
+
+main#about-content {
+    padding: 0;
+}
+
+footer#about-footer {
+    margin-top: auto;
+    padding: 10px 0;
+    height: 45px;
+}
+
+
