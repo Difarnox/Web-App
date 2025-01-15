@@ -1,6 +1,6 @@
 /* Gaya umum */
 * {
-    font-family: 'Roboto', sans-serif; /* Mengatur font default untuk semua elemen */
+    font-family: 'Roboto', sans-serif;
     transition: all 0.3s ease-in-out;
 }
 
@@ -27,10 +27,6 @@ header {
     width: 100%;
     z-index: 1000;
     transition: background-color 0.3s ease;
-}
-
-header.transparent {
-    background: linear-gradient(to bottom, rgba(0, 97, 168, 0.5), rgba(0, 130, 230, 0.5)); /* Transparansi pada gradasi biru */
 }
 
 header h1 {
@@ -115,6 +111,36 @@ nav ul li a:hover {
     nav ul li {
         margin-bottom: 10px;
     }
+
+    /* Menyesuaikan ukuran font tabel */
+    .table th, .table td {
+        font-size: 14px; /* Menurunkan ukuran font untuk layar kecil */
+    }
+
+    .table td {
+        padding: 8px; /* Mengurangi padding pada sel tabel */
+    }
+
+    /* Menyesuaikan tombol aksi */
+    .table td button {
+        font-size: 12px; /* Menurunkan ukuran font tombol */
+        padding: 6px 10px; /* Mengurangi padding tombol */
+    }
+
+    /* Menambahkan jarak antar tombol "Edit" dan "Hapus" */
+    .table td button {
+        margin: 0 5px; /* Memberikan jarak antar tombol */
+    }
+
+    .table .action-btn {
+        width: 70px; /* Membuat tombol lebih kecil */
+        padding: 6px 10px;
+    }
+
+    .landscape-img {
+        width: 80%; /* Mengurangi ukuran gambar */
+        max-width: 400px; /* Membatasi ukuran maksimum */
+    }
 }
 
 /* Gaya Konten Utama */
@@ -128,15 +154,6 @@ main {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-}
-
-.landscape-img {
-    width: 100%;
-    height: auto;
-    max-height: 325px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    object-fit: cover;
 }
 
 .justify {
@@ -166,7 +183,6 @@ footer {
     position: static;
 }
 
-
 .logo-link {
     text-decoration: none;
     color: white;
@@ -179,26 +195,61 @@ footer {
     margin: 20px 0;
     font-size: 18px;
     text-align: left;
+    background-color: white; /* Menyediakan latar belakang putih untuk tabel */
+    border-radius: 10px; /* Membuat sudut tabel lebih melengkung */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan pada tabel */
+    table-layout: fixed; /* Memastikan tabel tetap dalam ukuran yang tepat */
 }
 
 .table th, .table td {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: center;
+    word-wrap: break-word; /* Memastikan teks dibungkus dan tidak keluar */
+    overflow-wrap: break-word; /* Untuk penanganan teks yang lebih baik */
+    white-space: normal; /* Membolehkan teks untuk membungkus jika diperlukan */
 }
 
-.table th {
-    background-color: #f4f4f4;
-    color: #333;
-    font-weight: bold;
+/* Tombol dalam kolom aksi */
+.table td button {
+    font-size: 14px; /* Memperkecil ukuran font tombol */
+    padding: 4px 8px; /* Mengurangi padding tombol */
+    margin: 5px; /* Menambahkan jarak antara tombol kiri, kanan, atas, bawah */
+    cursor: pointer;
+    border-radius: 3px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: auto; /* Mengatur lebar tombol agar lebih fleksibel */
+    text-align: center; /* Menyelaraskan teks agar berada di tengah */
+    max-width: 100px; /* Membatasi lebar tombol untuk mencegah melebihi batas */
+    white-space: nowrap; /* Mencegah teks agar tidak terpotong */
 }
 
-.table tr:nth-child(even) {
-    background-color: #f9f9f9;
+.table td button:hover {
+    background-color: #0056b3;
+    box-shadow: 0px 0px 10px 2px rgba(0, 123, 255, 0.5);
 }
 
-.table tr:hover {
-    background-color: #f1f1f1;
+/* Menyesuaikan ukuran tabel agar tidak keluar dari background */
+.table th, .table td {
+    width: auto;
+    max-width: 250px;
+}
+
+.table {
+    table-layout: fixed;
+    overflow: hidden;
+}
+
+/* Gambar */
+.landscape-img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
 }
 
 /* Form */
@@ -237,79 +288,37 @@ button {
     border: none;
 }
 
-/* Tambahkan animasi pada hover */
 button:hover {
-    background-color: #0056b3; /* Warna latar belakang saat di-hover */
-    color: #ffffff; /* Warna teks saat di-hover */
-    box-shadow: 0px 0px 10px 2px rgba(0, 123, 255, 0.5); /* Efek cahaya */
-    transition: all 0.3s ease; /* Animasi transisi */
-}
-
-/* Tambahkan animasi pada hover untuk tombol dengan warna latar belakang berbeda */
-button[style*="background-color:rgb(85, 84, 80)"]:hover {
-    background-color: rgb(68, 67, 64); /* Warna latar belakang saat di-hover */
-    box-shadow: 0px 0px 10px 2px rgba(85, 84, 80, 0.5); /* Efek cahaya */
+    background-color: #0056b3;
+    color: #ffffff;
+    box-shadow: 0px 0px 10px 2px rgba(0, 123, 255, 0.5);
+    transition: all 0.3s ease;
 }
 
 button[style*="background-color: #dc3545"]:hover {
-    background-color: #bb2d3b; /* Warna latar belakang saat di-hover */
-    box-shadow: 0px 0px 10px 2px rgba(220, 53, 69, 0.5); /* Efek cahaya */
+    background-color: #bb2d3b;
+    box-shadow: 0px 0px 10px 2px rgba(220, 53, 69, 0.5);
 }
 
 button[style*="background-color: #ffc107"]:hover {
-    background-color: #e0a800; /* Warna latar belakang saat di-hover */
-    box-shadow: 0px 0px 10px 2px rgba(255, 193, 7, 0.5); /* Efek cahaya */
+    background-color: #e0a800;
+    box-shadow: 0px 0px 10px 2px rgba(255, 193, 7, 0.5);
 }
 
 button[style*="background-color: #007bff"]:hover {
-    background-color: #0056b3; /* Warna latar belakang saat di-hover */
-    box-shadow: 0px 0px 10px 2px rgba(0, 123, 255, 0.5); /* Efek cahaya */
+    background-color: #0056b3;
+    box-shadow: 0px 0px 10px 2px rgba(0, 123, 255, 0.5);
 }
 
 /* Menambah tebal garis pada kotak input */
 input[type="number"] {
-    border: 2px solid #ccc; /* Warna border abu-abu */
-    padding: 10px; /* Padding di dalam kotak input */
-    border-radius: 5px; /* Rounding pada sudut kotak input */
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 /* Menghapus efek shadow saat input dalam fokus */
 input[type="number"]:focus {
-    outline: none; /* Menghapus outline default */
-    border: 2px solid #aaa; /* Border sedikit lebih gelap saat dalam fokus */
+    outline: none;
+    border: 2px solid #aaa;
 }
-/* Gaya Halaman About */
-#about-content .profile-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    margin-bottom: 0;
-}
-
-#about-content .about-img {
-    flex: 1;
-    width: 30%;
-    max-width: 30%;
-    height: auto;
-    object-fit: cover;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
-    margin-bottom: 0;
-}
-
-#about-content .profile-info {
-    flex: 2;
-    margin-left: 10px;
-    padding: 10px 20px;
-}
-
-main#about-content {
-    padding: 0;
-}
-
-footer#about-footer {
-    margin-top: auto;
-    padding: 10px 0;
-    height: 45px;
-}
-
-
