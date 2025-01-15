@@ -5,35 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perhitungan Monte Carlo</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <link rel="icon" type="image/png" href="https://uxwing.com/wp-content/themes/uxwing/download/animals-and-birds/wildlife-animal-face-icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
-<body>
-    <!-- Header dengan menu responsif -->
-    <header>
-        <div class="header-left">
-            <a href="/" class="logo-link"><h1>Simulasi Monte Carlo</h1></a>
-        </div>
-        <div class="header-right">
-            <i class="ph ph-list" id="menu-icon" style="display: none;"></i> <!-- Ikon menu -->
-            <i class="ph ph-x" id="close-icon" style="display: none;"></i> <!-- Ikon close -->
-            <nav id="navbar">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/data_historis">Data Historis</a></li>
-                    <li><a href="/perhitungan_monte_carlo">Perhitungan Monte Carlo</a></li>
-                    <li><a href="/about">About</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<body class="home"> <!-- Menambahkan class "home" agar konsisten dengan halaman lain -->
 
-    <!-- Konten Utama -->
-    <main>
-        <section>
-            <h2>Distribusi Probabilitas</h2>
-            <table class="table">
+<header>
+    <div class="header-left">
+        <a href="/" class="logo-link"><h1>Simulasi Monte Carlo</h1></a>
+    </div>
+    <div class="header-right">
+        <i class="ph ph-list" id="menu-icon" style="display: none;"></i> <!-- Tombol menu -->
+        <i class="ph ph-x" id="close-icon" style="display: none;"></i> <!-- Tombol close -->
+        <nav id="navbar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/data_historis">Data Historis</a></li>
+                <li><a href="/perhitungan_monte_carlo" class="active">Perhitungan Monte Carlo</a></li> <!-- Menambahkan active class -->
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="content"> <!-- Menggunakan class 'content' untuk pembungkus utama -->
+        <div class="container mt-5">
+
+            <!-- Tabel Distribusi Probabilitas di Atas -->
+            <h3>Tabel Distribusi Probabilitas</h3>
+            <table class="table table-bordered mt-3">
                 <thead>
                     <tr>
                         <th>Tahun</th>
@@ -44,35 +47,42 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for data in hasil_monte_carlo %}
+                    {% for item in distribusi_probabilitas %}
                     <tr>
-                        <td>{{ data.tahun }}</td>
-                        <td>{{ data.penambahan_gerai }}</td>
-                        <td>{{ data.probabilitas }}</td>
-                        <td>{{ data.probabilitas_kumulatif }}</td>
-                        <td>{{ data.interval }}</td>
+                        <td>{{ item.tahun }}</td>
+                        <td class="number">{{ item.penambahan_gerai }}</td>
+                        <td>{{ item.probabilitas }}</td>
+                        <td>{{ item.probabilitas_kumulatif }}</td>
+                        <td>{{ item.interval }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
 
-            <h2>Input Parameter Monte Carlo</h2>
-            <form method="POST">
+            <h1 class="text-center">Perhitungan Monte Carlo</h1>
+
+            <form method="POST" action="/perhitungan_monte_carlo">
                 <label for="tahun_prediksi">Tahun Prediksi:</label>
-                <input type="number" id="tahun_prediksi" name="tahun_prediksi" required>
+                <input type="number" id="tahun_prediksi" name="tahun_prediksi" min="1" inputmode="numeric" pattern="[0-9]*" required>
+
                 <label for="a">Konstanta a:</label>
-                <input type="number" id="a" name="a" required>
+                <input type="number" id="a" name="a" min="1" inputmode="numeric" pattern="[0-9]*" required>
+
                 <label for="c">Konstanta c:</label>
-                <input type="number" id="c" name="c" required>
+                <input type="number" id="c" name="c" min="1" inputmode="numeric" pattern="[0-9]*" required>
+
                 <label for="m">Modulus m:</label>
-                <input type="number" id="m" name="m" required>
+                <input type="number" id="m" name="m" min="1" inputmode="numeric" pattern="[0-9]*" required>
+
                 <label for="zo">Nilai Awal Z0:</label>
-                <input type="number" id="zo" name="zo" required>
-                <button type="submit">Hitung</button>
+                <input type="number" id="zo" name="zo" min="1" inputmode="numeric" pattern="[0-9]*" required>
+
+                <button type="submit" class="btn btn-primary">Hitung</button>
             </form>
 
-            <h2>Hasil Simulasi</h2>
-            <table class="table">
+            <h3>Hasil Simulasi Monte Carlo</h3>
+            {% if hasil_simulasi %}
+            <table class="table table-bordered mt-3">
                 <thead>
                     <tr>
                         <th>Tahun</th>
@@ -82,17 +92,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for result in hasil_simulasi %}
+                    {% for simulasi in hasil_simulasi %}
                     <tr>
-                        <td>{{ result.tahun }}</td>
-                        <td>{{ result.bilangan_acak }}</td>
-                        <td>{{ result.penambahan_gerai }}</td>
-                        <td>{{ result.jumlah_gerai }}</td>
+                        <td>{{ simulasi.tahun }}</td>
+                        <td>{{ simulasi.bilangan_acak }}</td>
+                        <td class="number">{{ simulasi.penambahan_gerai }}</td>
+                        <td class="number">{{ simulasi.jumlah_gerai }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-        </section>
-    </main>
+            {% else %}
+                <p>Belum ada hasil simulasi. Klik tombol "Hitung" untuk melihat hasil simulasi.</p>
+            {% endif %}
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Simulasi Monte Carlo. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
