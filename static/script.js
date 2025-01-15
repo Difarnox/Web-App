@@ -1,15 +1,111 @@
+// Fungsi untuk membersihkan form 
+function clearForm() {
+    document.getElementById('tahun').value = '';
+    document.getElementById('jumlah_gerai').value = '';
+    document.getElementById('penambahan_gerai').value = '';
+}
+
+function editData(id, tahun, jumlahGerai, penambahanGerai) {
+    // Mengisi form dengan data yang ada
+    document.getElementById('tahun').value = tahun;
+    document.getElementById('jumlah_gerai').value = jumlahGerai;
+    document.getElementById('penambahan_gerai').value = penambahanGerai;
+
+    // Menampilkan tombol update dan tombol cancel edit
+    document.getElementById('update-btn').style.display = 'inline-block';
+    document.getElementById('cancel-edit').style.display = 'inline-block';
+
+    // Menyembunyikan tombol tambah data
+    document.querySelector("form button[type='submit']").style.display = 'none';
+    
+    // Menyimpan ID untuk pengeditan
+    window.editingId = id;
+}
+
+function cancelEdit() {
+    // Mengembalikan ke keadaan semula
+    document.getElementById('tahun').value = '';
+    document.getElementById('jumlah_gerai').value = '';
+    document.getElementById('penambahan_gerai').value = '';
+
+    document.getElementById('update-btn').style.display = 'none';
+    document.getElementById('cancel-edit').style.display = 'none';
+    document.querySelector("form button[type='submit']").style.display = 'inline-block';
+
+    // Menghapus ID yang disimpan
+    window.editingId = null;
+}
+
+function updateData() {
+    const tahun = document.getElementById('tahun').value;
+    const jumlahGerai = document.getElementById('jumlah_gerai').value;
+    const penambahanGerai = document.getElementById('penambahan_gerai').value;
+
+    if (window.editingId && tahun && jumlahGerai && penambahanGerai) {
+        fetch(`/update_data/${window.editingId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                tahun: tahun,
+                jumlah_gerai: jumlahGerai,
+                penambahan_gerai: penambahanGerai,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                // Update tabel secara dinamis
+                updateTableRow(window.editingId, data.data);
+                // Setelah update berhasil, sembunyikan tombol update dan tampilkan tombol submit lagi
+                cancelEdit();
+            } else {
+                alert("Terjadi kesalahan saat memperbarui data.");
+            }
+        });
+    }
+}
+
+// Fungsi untuk memperbarui baris tabel setelah data berhasil diperbarui
+function updateTableRow(id, updatedData) {
+    // Temukan baris tabel berdasarkan ID
+    const row = document.querySelector(`tr[data-id='${id}']`);
+    
+    if (row) {
+        // Update nilai-nilai di dalam tabel sesuai dengan data yang diperbarui
+        row.querySelector('.tahun').textContent = updatedData.tahun;
+        row.querySelector('.jumlah_gerai').textContent = updatedData.jumlah_gerai;
+        row.querySelector('.penambahan_gerai').textContent = updatedData.penambahan_gerai;
+    }
+}
+
+// Fungsi untuk menghapus data
+function deleteData(id) {
+    if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+        window.location.href = '/delete_data/' + id;  // Gantilah URL ini sesuai dengan rute penghapusan data di server
+    }
+}
+
+// Fungsi untuk memformat angka ke format ribuan
+function formatNumber(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+// Terapkan fungsi ke semua kolom angka di tabel
+document.querySelectorAll('.table td.number').forEach(cell => {
+    cell.textContent = formatNumber(cell.textContent);
+});
+
+
+// Fungsi untuk menyesuaikan tampilan menu navigasi berdasarkan ukuran layar
 document.addEventListener('DOMContentLoaded', function() {
-    // Ambil elemen ikon menu, ikon close, navbar, dan header
     const menuIcon = document.getElementById('menu-icon');
     const closeIcon = document.getElementById('close-icon');
     const navbar = document.getElementById('navbar');
     const header = document.querySelector('header');
-    
-    // Elemen form dan tabel
-    const dataForm = document.getElementById('dataForm');
-    const dataTable = document.getElementById('data-table');
-    
-    // Fungsi untuk mengatur tampilan tombol berdasarkan ukuran layar
+
+    // Fungsi untuk menyesuaikan tampilan navbar
     function adjustNavbar() {
         if (window.innerWidth > 768) {
             navbar.classList.remove('active');
@@ -38,50 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Fungsi untuk memformat angka
-    function formatNumber(num) {
-        return new Intl.NumberFormat('id-ID', {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 4,
-        }).format(num);
-    }
-
-    // Format semua elemen dengan kelas "format-number"
-    const elements = document.querySelectorAll('.format-number');
-    elements.forEach(el => {
-        const num = parseFloat(el.textContent);
-        if (!isNaN(num)) {
-            el.textContent = formatNumber(num);
-        }
-    });
-
-    // Fungsi untuk menghapus teks yang diketik di form
-    window.clearForm = function() {
-        dataForm.reset();
-    }
-
-    // Fungsi untuk membatalkan edit dan kembali ke mode tambah data
-    window.cancelEdit = function() {
-        document.getElementById('dataForm').reset();
-        document.getElementById('submit-button').textContent = "Tambahkan Data";
-    }
-    
-    // Fungsi untuk menampilkan form edit dengan data yang ada
-    window.editData = function(id, tahun, jumlahGerai, penambahanGerai) {
-        document.getElementById('tahun').value = tahun;
-        document.getElementById('jumlah_gerai').value = jumlahGerai;
-        document.getElementById('penambahan_gerai').value = penambahanGerai;
-        document.getElementsByName('id')[0].value = id;
-        document.getElementById('submit-button').textContent = "Edit Data";
-    }
-
-    // Panggil fungsi adjustNavbar saat halaman dimuat
-    adjustNavbar();
-
-    // Panggil fungsi handleScroll saat halaman di-scroll
-    handleScroll();
-
-    // Tambahkan event listener pada ikon menu untuk menampilkan menu bar
+    // Fungsi untuk menampilkan menu saat menu icon diklik
     menuIcon.addEventListener('click', function() {
         navbar.classList.add('active');
         header.classList.add('active');
@@ -91,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
         header.classList.remove('transparent');
     });
 
-    // Tambahkan event listener pada ikon close untuk menyembunyikan menu bar
+    // Fungsi untuk menutup menu saat close icon diklik
     closeIcon.addEventListener('click', function() {
         navbar.classList.remove('active');
         header.classList.remove('active');
@@ -100,9 +153,27 @@ document.addEventListener('DOMContentLoaded', function() {
         closeIcon.style.display = 'none';
     });
 
+    // Panggil fungsi adjustNavbar saat halaman dimuat
+    adjustNavbar();
+
+    // Panggil fungsi handleScroll saat halaman di-scroll
+    handleScroll();
+
     // Tambahkan event listener pada jendela resize untuk mengubah tampilan menu dan tombol
     window.addEventListener('resize', adjustNavbar);
 
     // Tambahkan event listener pada scroll untuk mengubah gaya header
     window.addEventListener('scroll', handleScroll);
+});
+
+// Menambahkan validasi untuk input angka positif
+document.querySelector('form').addEventListener('submit', function(event) {
+    const tahunInput = document.getElementById('tahun');
+    const jumlahGeraiInput = document.getElementById('jumlah_gerai');
+    const penambahanGeraiInput = document.getElementById('penambahan_gerai');
+    
+    if (tahunInput.value <= 0 || jumlahGeraiInput.value <= 0 || penambahanGeraiInput.value <= 0) {
+        alert("Semua input harus berupa angka positif dan tidak boleh kosong.");
+        event.preventDefault(); // Mencegah pengiriman form jika ada input yang invalid
+    }
 });
