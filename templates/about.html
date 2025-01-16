@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="https://uxwing.com/wp-content/themes/uxwing/download/animals-and-birds/wildlife-animal-face-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body class="home"> <!-- Menambahkan class "home" agar konsisten dengan halaman lain -->
+
+<!-- Header dengan Navbar -->
+<header>
+    <div class="header-left">
+        <a href="/" class="logo-link"><h1>Simulasi Monte Carlo</h1></a>
+    </div>
+    <div class="header-right">
+        <i class="ph ph-list" id="menu-icon" style="display: none;"></i> <!-- Tombol menu -->
+        <i class="ph ph-x" id="close-icon" style="display: none;"></i> <!-- Tombol close -->
+        <nav id="navbar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/data_historis">Data Historis</a></li>
+                <li><a href="/perhitungan_monte_carlo">Perhitungan Monte Carlo</a></li>
+                <li><a href="/about" class="active">About</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Konten About -->
+<main>
+    <div class="content"> <!-- Menggunakan class 'content' untuk pembungkus utama -->
+        <section>
+            <div class="about-info">
+                <h2 class="about-title">Tentang Aplikasi</h2>
+                <p>Aplikasi ini bertujuan untuk memprediksi penambahan gerai Indomaret di Indonesia setiap tahunnya dengan menggunakan metode simulasi Monte Carlo. Simulasi Monte Carlo adalah teknik statistik yang digunakan untuk memprediksi hasil yang mungkin dengan mempertimbangkan variasi yang ada dalam parameter input yang digunakan.</p>
+                <p>Melalui aplikasi ini, pengguna dapat memasukkan data historis mengenai jumlah gerai Indomaret dan penambahannya setiap tahun. Berdasarkan data tersebut, aplikasi akan menghitung distribusi probabilitas untuk memprediksi berapa banyak gerai yang akan ditambahkan pada tahun-tahun berikutnya.</p>
+                <p>Dengan menggunakan metode Monte Carlo, aplikasi ini menghasilkan hasil simulasi yang dapat membantu dalam perencanaan ekspansi gerai Indomaret di Indonesia, dengan mempertimbangkan berbagai kemungkinan hasil berdasarkan data historis yang telah dimasukkan.</p>
+                <p>Prediksi ini sangat berguna bagi pihak manajemen Indomaret atau pihak terkait lainnya dalam membuat keputusan strategis yang berkaitan dengan ekspansi gerai di berbagai daerah.</p>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 Simulasi Monte Carlo. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
