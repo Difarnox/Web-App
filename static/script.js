@@ -7,6 +7,27 @@ function clearForm() {
     document.getElementById('zo').value = '';
 }
 
+// Fungsi untuk mereset form
+function resetForm() {
+    document.getElementById('tahun').value = '';
+    document.getElementById('jumlah_gerai').value = '';
+    document.getElementById('penambahan_gerai').value = '';
+}
+
+// Fungsi untuk memformat angka dengan titik sebagai pemisah ribuan
+function formatNumberWithDot(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+// Ambil semua elemen dengan class "number"
+document.querySelectorAll('.number').forEach(function(element) {
+    // Ambil teks dari elemen, pastikan itu angka dan format dengan titik
+    var number = parseFloat(element.textContent);
+    if (!isNaN(number)) {
+        element.textContent = formatNumberWithDot(number);
+    }
+});
+
 // Fungsi untuk mereset tabel hasil simulasi Monte Carlo
 function resetSimulationTable() {
     const simulationTable = document.getElementById('simulation-table');
@@ -93,6 +114,14 @@ function updateTableRow(id, updatedData) {
         row.querySelector('.tahun').textContent = updatedData.tahun;
         row.querySelector('.jumlah_gerai').textContent = updatedData.jumlah_gerai;
         row.querySelector('.penambahan_gerai').textContent = updatedData.penambahan_gerai;
+
+        // Panggil kembali fungsi format untuk angka setelah update
+        row.querySelectorAll('.number').forEach(function(cell) {
+            var number = parseFloat(cell.textContent);
+            if (!isNaN(number)) {
+                cell.textContent = formatNumberWithDot(number);
+            }
+        });
     }
 }
 
@@ -112,7 +141,6 @@ function formatNumber(num) {
 document.querySelectorAll('.table td.number').forEach(cell => {
     cell.textContent = formatNumber(cell.textContent);
 });
-
 
 // Fungsi untuk menyesuaikan tampilan menu navigasi berdasarkan ukuran layar
 document.addEventListener('DOMContentLoaded', function() {
