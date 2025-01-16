@@ -1,0 +1,18 @@
+[
+    {"id": 1, "tahun": 2010, "jumlah_gerai": 4599, "penambahan_gerai": 1000},
+    {"id": 2, "tahun": 2011, "jumlah_gerai": 6003, "penambahan_gerai": 1404},
+    {"id": 3, "tahun": 2012, "jumlah_gerai": 7200, "penambahan_gerai": 1197},
+    {"id": 4, "tahun": 2013, "jumlah_gerai": 8331, "penambahan_gerai": 1131},
+    {"id": 5, "tahun": 2014, "jumlah_gerai": 10600, "penambahan_gerai": 2269},
+    {"id": 6, "tahun": 2015, "jumlah_gerai": 11400, "penambahan_gerai": 800},
+    {"id": 7, "tahun": 2016, "jumlah_gerai": 12600, "penambahan_gerai": 1200},
+    {"id": 8, "tahun": 2017, "jumlah_gerai": 13900, "penambahan_gerai": 1300},
+    {"id": 9, "tahun": 2018, "jumlah_gerai": 15100, "penambahan_gerai": 1200},
+    {"id": 10, "tahun": 2019, "jumlah_gerai": 16336, "penambahan_gerai": 1236},
+    {"id": 11, "tahun": 2020, "jumlah_gerai": 17500, "penambahan_gerai": 1164},
+    {"id": 12, "tahun": 2021, "jumlah_gerai": 18700, "penambahan_gerai": 1200},
+    {"id": 13, "tahun": 2022, "jumlah_gerai": 21026, "penambahan_gerai": 2326},
+    {"id": 14, "tahun": 2023, "jumlah_gerai": 22500, "penambahan_gerai": 1474},
+    {"id": 15, "tahun": 2024, "jumlah_gerai": 24000, "penambahan_gerai": 1500},
+    {"id": 16, "tahun": 2025, "jumlah_gerai": 25500, "penambahan_gerai": 1500}
+]
