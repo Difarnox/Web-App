@@ -1,4 +1,4 @@
-// Fungsi untuk membersihkan form 
+// Fungsi untuk membersihkan form
 function clearForm() {
     document.getElementById('tahun_prediksi').value = '';
     document.getElementById('a').value = '';
@@ -19,12 +19,14 @@ function formatNumberWithDot(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-// Ambil semua elemen dengan class "number"
-document.querySelectorAll('.number').forEach(function(element) {
-    // Ambil teks dari elemen, pastikan itu angka dan format dengan titik
-    var number = parseFloat(element.textContent);
-    if (!isNaN(number)) {
-        element.textContent = formatNumberWithDot(number);
+// Ambil semua elemen dengan class "number", kecuali kolom "tahun"
+document.querySelectorAll('.table td.number').forEach(function(element) {
+    if (!element.classList.contains('tahun')) {
+        // Ambil teks dari elemen, pastikan itu angka dan format dengan titik
+        var number = parseFloat(element.textContent);
+        if (!isNaN(number)) {
+            element.textContent = formatNumberWithDot(number);
+        }
     }
 });
 
