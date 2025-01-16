@@ -117,11 +117,24 @@ function displaySimulationResults(hasilSimulasi) {
     });
 }
 
-// Fungsi untuk mereset form
-function resetForm() {
+// Fungsi untuk clear form
+function clearForm() {
     document.getElementById('tahun_prediksi').value = '';
     document.getElementById('a').value = '';
     document.getElementById('c').value = '';
     document.getElementById('m').value = '';
     document.getElementById('zo').value = '';
+}
+
+// Fungsi untuk mereset tabel hasil simulasi
+function resetSimulasi() {
+    // Menghapus isi tabel hasil simulasi
+    const hasilSimulasiTable = document.querySelector('#hasil-simulasi-container table tbody');
+    hasilSimulasiTable.innerHTML = '';
+
+    // Menyembunyikan tabel hasil simulasi
+    document.querySelector('#hasil-simulasi-container').style.display = 'none';
+
+    // Menampilkan deskripsi hasil simulasi
+    document.querySelector('#hasil-deskripsi').style.display = 'block';
 }
