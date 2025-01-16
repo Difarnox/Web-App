@@ -1,10 +1,26 @@
 // Fungsi untuk membersihkan form 
 function clearForm() {
-    document.getElementById('tahun').value = '';
-    document.getElementById('jumlah_gerai').value = '';
-    document.getElementById('penambahan_gerai').value = '';
+    document.getElementById('tahun_prediksi').value = '';
+    document.getElementById('a').value = '';
+    document.getElementById('c').value = '';
+    document.getElementById('m').value = '';
+    document.getElementById('zo').value = '';
 }
 
+// Fungsi untuk mereset tabel hasil simulasi Monte Carlo
+function resetSimulationTable() {
+    const simulationTable = document.getElementById('simulation-table');
+    const simulationTableBody = simulationTable.querySelector('tbody');
+    simulationTableBody.innerHTML = ''; // Menghapus semua baris di dalam tabel simulasi
+}
+
+// Fungsi untuk menambahkan event listener pada tombol reset
+document.getElementById('reset-button').addEventListener('click', function() {
+    clearForm(); // Menghapus nilai input di form
+    resetSimulationTable(); // Menghapus hasil simulasi dari tabel
+});
+
+// Fungsi untuk mengedit data
 function editData(id, tahun, jumlahGerai, penambahanGerai) {
     // Mengisi form dengan data yang ada
     document.getElementById('tahun').value = tahun;
