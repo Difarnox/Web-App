@@ -78,11 +78,12 @@
                 <input type="number" id="zo" name="zo" min="1" inputmode="numeric" pattern="[0-9]*" required>
 
                 <button type="submit" class="btn btn-primary">Hitung</button>
+                <button type="button" id="reset-button" class="btn btn-secondary">Reset</button>
             </form>
 
             <h3>Hasil Simulasi Monte Carlo</h3>
             {% if hasil_simulasi %}
-            <table class="table table-bordered mt-3">
+            <table id="simulation-table" class="table table-bordered mt-3">
                 <thead>
                     <tr>
                         <th>Tahun</th>
