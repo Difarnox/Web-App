@@ -48,7 +48,8 @@
 
                 <!-- Tombol Submit dan Clear -->
                 <button type="submit">Tambah Data</button>
-                <button type="button" onclick="clearForm()">Clear</button>
+                <!-- Tombol Clear -->
+                <button type="button" onclick="resetForm()">Clear</button>
                 
                 <!-- Tombol Cancel Edit -->
                 <button type="button" id="cancel-edit" style="display: none;" onclick="cancelEdit()">Cancel Edit</button>
@@ -73,9 +74,9 @@
                     {% for item in data_historis %}
                     <tr data-id="{{ item.id }}">
                         <td>{{ item.id }}</td>
-                        <td class="tahun">{{ item.tahun }}</td>
-                        <td class="jumlah_gerai number">{{ item.jumlah_gerai }}</td>
-                        <td class="penambahan_gerai number">{{ item.penambahan_gerai }}</td>
+                        <td class="number tahun">{{ item.tahun }}</td>
+                        <td class="number jumlah_gerai">{{ item.jumlah_gerai }}</td>
+                        <td class="number penambahan_gerai">{{ item.penambahan_gerai }}</td>
                         <td>
                             <button class="edit-btn" onclick="editData({{ item.id }}, '{{ item.tahun }}', '{{ item.jumlah_gerai }}', '{{ item.penambahan_gerai }}')">Edit</button>
                             
