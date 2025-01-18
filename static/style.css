@@ -40,6 +40,50 @@ header h1 {
     font-size: 24px;
 }
 
+/* Custom Scrollbar */
+body::-webkit-scrollbar {
+    width: 4px; /* Lebar scrollbar lebih kecil */
+    height: 4px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #0061a8; /* Warna scrollbar hijau daun */
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0); /* Warna track scrollbar transparan */
+}
+
+/* RESULT STYLING */
+#result {
+    display: none; /* Sembunyikan elemen secara default */
+    margin-top: 10px; /* Jarak atas 10px */
+    padding: 15px; /* Padding dalam hasil dikurangi */
+    background: #ffffff; /* Warna latar belakang sama dengan kalkulator */
+    border-radius: 10px; /* Sudut melengkung sama dengan kalkulator */
+    color: #000000; /* Warna teks hitam */
+    font-size: 1em; /* Ukuran font lebih besar sedikit */
+    text-align: left; /* Teks rata kiri */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan lembut */
+    width: 90%; /* Lebar 90% dari viewport */
+    max-width: 650px; /* Lebar maksimal sama dengan kalkulator */
+    margin-left: auto; /* Tengah horizontal */
+    margin-right: auto; /* Tengah horizontal */
+    overflow: auto;
+}
+
+#result::-webkit-scrollbar {
+    width: 4px; height: 4px; /* Tambahkan ini untuk scroll horizontal */
+} 
+
+#result::-webkit-scrollbar-thumb {
+    background-color: #0061a8;
+}
+
+#result::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0);
+}
+
 /* Icon Menu */
 #menu-icon, #close-icon {
     display: block;
